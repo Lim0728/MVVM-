@@ -1,0 +1,108 @@
+		/* 起手先消除一些不必要的内外边距！ */
+		*{
+            margin: 0;
+            padding: 0;
+        }
+		/* 给咱们大盒子搞个范围qwq */
+        .box {  
+			width: 56%; 
+			margin-left: 22%; 
+			margin-right: 22%;
+			height: 800px;
+            }
+			/* 开始头部了！！我爱绝对-相对定位 */
+		.head{
+			height: 160px;
+			position: relative;
+		}
+		.left{
+			text-align: center;
+			margin: 50px;
+			padding-right:70px;
+		}
+		/* 偷偷用取色器在图片上取色copy */
+		.head-color{
+			color: rgb(55, 65, 77);
+		}
+		/* 相对的top right属性真好用啊TAT */
+		.img1{
+			height: 113px;
+			width: 82px;
+			position: absolute;
+			top: -17px;
+			right: 50px;
+		}
+		/* 我又又又偷颜色 */
+		.line{
+			border: 1px solid rgb(12, 154, 186);
+			margin-top:5px ;
+		}
+		.education{
+			margin-top: -55px;
+		}
+		/* 使用margin和absolute来微调，非常有用啊！easy */
+		.text-title{
+			font-size: 20px;
+			margin-top:-10px ;
+			color: rgb(12, 154, 186);
+			font-weight: bold;
+		}
+		.edu-box1{
+			position: relative;
+		}
+		.text1-left{
+			position: absolute;
+			font-weight: bold;
+			margin-top: 11px;
+			color: rgb(55, 65, 77);
+		}
+		.text1-right{
+			position: absolute;
+			margin-top: 11px;
+			right: 0px;
+			color: rgb(55, 65, 77);
+		}
+		.edu-box2{
+			color: rgb(55, 65, 77);
+			position: absolute;
+			top: 235px;
+			width: 57%;
+		}
+		.work{
+			margin-top: 150px;
+		}
+		/* 注意！一定要父元素又relative不然文本会脱离标准流，然后整个框架就乱乱乱！！缩小页面的时候这块文字就告别星球了 */
+		.list{
+			color: rgb(55, 65, 77);
+			position: absolute;
+			top: 50px;
+			left: 20px;
+		}
+		.list li,.list2 li{
+			margin-bottom: 6px;
+		}
+		.edu-box2 div{
+			margin-bottom: 7px;
+		}
+		.two{
+			margin-top: 130px;
+		}
+		.list2{
+			color: rgb(55, 65, 77);
+			position: absolute;
+			top: 50px;
+			left: 20px;
+		}
+		.skill{
+			margin-top: 370px;
+		}
+		.bom-text div{
+			margin-bottom: 7px;
+		}
+		.bom-text{
+			color: rgb(55, 65, 77);
+			margin-top: 25px;
+		}
+		.postion-total{
+			position: relative;
+		}
