@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh">
+	<head>
+		<meta charset="UTF-8" />
+		<title>表格数据排序</title>
+		<style>
+			table {
+				width: 50%;
+				margin-top: 20px;
+				border: 1px solid #ddd;
+				/* 固定表格布局 */
+				table-layout: fixed;
+			}
+
+			th {
+				background-color: #dfeefd;
+			}
+
+			th,
+			td {
+				padding: 8px;
+				text-align: left;
+			}
+
+			tr:nth-child(even) {
+				background-color: #f2f2f2;
+			}
+
+			.add-button {
+				margin-top: 20px;
+			}
+			/* 增加一个删除按钮的样式 */
+			.del-button{
+				margin-top: 8px;
+				margin-left:8px ;
+			}
+		</style>
+
+	</head>
+	<body>
+		<table id="myTable">
+			<tr>
+				<th>姓名</th>
+				<th>年龄</th>
+				<th>操作</th>
+			</tr>
+		</table>
+		<input type="text" id="nameInput" placeholder="姓名" />
+		<input type="number" id="ageInput" placeholder="年龄" />
+		<button id="addRow" class="add-button">添加数据</button>
+	</body>
+	<script>
+		const table_ele=document.querySelector("#myTable")
+		const text_ele=document.querySelector('#nameInput')
+		const age_ele=document.querySelector('#ageInput')
+		const addbtn_ele=document.querySelector('#addRow')
+		addbtn_ele.addEventListener('click',function(){
+			let name=text_ele.value
+			let age=age_ele.value
+			/* 增加一个检查器，检查值是否为空，如果为空不插入 */
+			if( name !== "" && age !== ""){
+			let new_row=document.createElement('tr')
+			let name_row=document.createElement('td')
+			let age_row=document.createElement('td')
+			let btn_row=document.createElement('button')
+			name_row.textContent=name
+			age_row.textContent=age
+			btn_row.textContent='删除'
+			btn_row.classList.add('del-button')
+			btn_row.addEventListener('click', function() {
+			        new_row.remove();  /* 删除当前行 */
+			     });
+			new_row.append(name_row)
+			new_row.append(age_row)
+			new_row.append(btn_row)
+			table_ele.append(new_row)
+			/* 调用排序（升序）函数 */
+			sortTable();
+			}else{
+				alert("请不要输入空数据！")
+			}
+		})
+		/* 升序函数 */
+		function sortTable() {
+		            let rows = Array.from(table_ele.rows).slice(1); /* 获取所有行（去掉表头）,并封装成数组 */
+		
+		            /* 根据年龄排序 */
+		            rows.sort((a, b) => {
+						/* cells是从0开始的，1代表年龄这里的值 */
+		                let ageA = parseInt(a.cells[1].textContent);
+		                let ageB = parseInt(b.cells[1].textContent);
+		                return ageA - ageB; 
+		            });
+		
+		           /* 清空表格（保留表头） */
+		            table_ele.innerHTML = `
+		                <tr>
+		                    <th>姓名</th>
+		                    <th>年龄</th>
+		                    <th>操作</th>
+		                </tr>
+		            `;
+		
+		            /* 重新插入排序后的行 */
+		            rows.forEach(row => table_ele.appendChild(row));
+		        }
+	</script>
+</html>

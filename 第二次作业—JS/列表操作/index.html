@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>动态更新和删除列表项</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            max-width: 600px;
+            margin: 20px auto;
+            background: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        li {
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        li:last-child {
+            border-bottom: none;
+        }
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 8px 12px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        input[type="text"] {
+            padding: 10px;
+            width: 500px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+        .input-content {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+		/* 加一个容器，不然按钮会根据名字移动 */
+		.button-container {
+			display: flex;
+			gap: 180px;
+		}
+    </style>
+</head>
+<body>
+    <h1>动态列表管理</h1>
+    <ul id="myList"></ul>
+    <div class = "input-content">
+        <input type="text" id="itemInput" placeholder="新项">
+        <button id="addItem">添加项</button>
+    </div>
+</body>
+<script>
+	const ul_ele=document.querySelector("#myList")
+	const addbtn_ele=document.querySelector('#addItem')
+	const text_ele=document.querySelector('#itemInput')
+	addbtn_ele.addEventListener('click',function(){
+		let name = text_ele.value
+		/* 增加一个检查器，检查值是否为空，如果为空不插入 */
+		if(name !== ""){
+			let new_li=document.createElement('li')
+			let set_btn=document.createElement('button')
+			let del_btn=document.createElement('button')
+			let text_span=document.createElement('span')
+			set_btn.textContent='编辑'
+			del_btn.textContent='删除'
+			text_span.textContent=name
+			/* 添加一个按钮容器 */
+			let button_container = document.createElement('div');
+			/* 为按钮容器添加类名 */
+		    button_container.className = 'button-container'; 
+			button_container.append(set_btn);
+			button_container.append(del_btn);
+			/* 用append()来添加元素 */
+			new_li.append(text_span)
+			new_li.append(button_container)
+			ul_ele.append(new_li)
+			/* 为编辑和删除按钮添加点击事件 */
+			set_btn.addEventListener('click',function(){
+				/* prompt（"text"）是输入弹框 */
+				let set_name=prompt("请输入新内容")
+				text_span.textContent=set_name
+			})
+			del_btn.addEventListener('click',function(){
+				new_li.remove()
+			})
+		}else{
+			alert("不要输入空值")
+		}
+	})
+</script>
+</html>

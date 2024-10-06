@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>动态改变文档内容</title>
+</head>
+<body>
+    <h1>初始标题</h1>
+    <button id="changeTitle">改变标题</button>
+    <div id="currentTime"></div>
+</body>
+<script>
+	/* 获取三个元素 */
+	const btn_ele=document.querySelector("#changeTitle")
+	const div_ele=document.querySelector("#currentTime")
+	const h1_ele=document.querySelector("h1")
+	/* Date()函数用于获取日期和时间 */
+	let time=new Date()
+	/* 将日期和时间包装成所要求的形式 */
+	let Time_String=time.getFullYear()+'/'+time.getMonth()+'/'+time.getDate()+" "+String(time.getHours()).padStart(2, '0')+":"+String(time.getMinutes()).padStart(2, '0')+":"+String(time.getSeconds()).padStart(2, '0')
+	/* 为这个按钮加上监听器 */
+	btn_ele.addEventListener('click',function(){
+		h1_ele.innerHTML="欢迎来到我的网站"
+		div_ele.innerHTML=Time_String
+	})
+</script>
+</html>
